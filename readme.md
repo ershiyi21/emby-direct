@@ -56,3 +56,14 @@
 
 - [emby-python](https://github.com/666wcy/emby-python)
 - [varnish-cache](https://varnish-cache.org/docs/index.html)
+
+原理解释
+利用 Varnish 反代的原理
+缓存了封面图以及一些非业务操作包进内存高速读取
+减轻 Fclone/Rclone 小文件读取压力
+
+前后分离式
+推流通过 Varnish 的反代分流规则交给 Python 处理 获取直链然后返回给客户端
+Infuse 扫库也毫无压力~ 看片不受影响
+
+此方法可以改为多服务器分布式推流, 一键部署, 只需要部署 Fclone/Rclone For Http 即可~ 仓库里有写好的栗子
